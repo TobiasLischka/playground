@@ -11,9 +11,12 @@ import { Plugins } from 'protractor/built/plugins';
 })
 export class PhotoService {
 
+  public photos: Photo[] = [];
+
   constructor(private sanitizer: DomSanitizer) { }
 
   photo: SafeResourceUrl
+
 
   public async addNewToGallery() {
     // Take a photo
@@ -22,8 +25,17 @@ export class PhotoService {
       source: CameraSource.Camera,
       quality: 100
     });
+    
+    this.photos.unshift({
+      filepath: "soon...",
+      webviewPath: capturedPhoto.webPath
+    });
   }
   
+}
+export interface Photo {
+  filepath: string;
+  webviewPath: string;
 }
 
 
